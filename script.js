@@ -1,3 +1,4 @@
+
 const tips = [
     "Keep shrimp water parameters stable instead of chasing perfect numbers.",
     "Avoid overfeeding. Shrimp can survive on biofilm and algae between feedings.",
@@ -7,9 +8,17 @@ const tips = [
     "Small, regular water changes are usually better than large sudden changes."
 ];
 
-function showShrimpTip() {
-    const randomIndex = Math.floor(Math.random() * tips.length);
-    const tipDisplay = document.getElementById("shrimp-tip");
+let previousIndex = -1;
 
+function showShrimpTip() {
+    let randomIndex;
+
+    do {
+        randomIndex = Math.floor(Math.random() * tips.length);
+    } while (randomIndex === previousIndex && tips.length > 1);
+
+    previousIndex = randomIndex;
+
+    const tipDisplay = document.getElementById("shrimp-tip");
     tipDisplay.textContent = tips[randomIndex];
 }
